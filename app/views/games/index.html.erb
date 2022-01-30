@@ -3,7 +3,6 @@
 .loading .loading-screen {display: block}
 .ready .loading-screen { display: none }
 .complete .guess-form { display: none };
-.table td {width: 16.67%%}
 </style>
 <div class="container  mt-3 loading" data-controller="games keyboard cookie" data-games-loading-class="loading" data-games-ready-class="ready" data-games-complete-class="complete" data-action="games:guessMade->keyboard#updateKeyboard games:guessMade->cookie#updateCookies keyboard:keyStruck->games#appendLetter keyboard:enterStruck->games#guess keyboard:deleteStruck->games#removeLetter cookie:getExistingGame->games#useExistingGame cookie:getExistingGame->keyboard#updateKeyboard" >
     <div class="game-board">

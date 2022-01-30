@@ -1,7 +1,11 @@
 <div id="<%= dom_id word_library %>">
     <%= turbo_frame_tag "edit_word" do %>
-        <h3><%= Date.ordinal(Date.today.year, word_library.id).strftime("%A, %B %d, %Y") %></h3>
-        <%= word_library.word %>
-        <%= link_to "Edit", edit_word_library_path(word_library) %> 
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><%= Date.ordinal(Date.today.year, word_library.id).strftime("%A, %B %d, %Y") %></h5>
+                <p class="card-text"><%= word_library.word %></p>
+                <%= link_to "Edit", edit_word_library_path(word_library), class: "card-link" %>
+            </div>
+        </div>
     <% end %>
 </div>

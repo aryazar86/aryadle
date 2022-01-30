@@ -31,7 +31,7 @@ export default class extends Controller {
   printGuess(guess) {
     let print = '<table class="table"><tr>';
     guess.forEach((element) => {
-      print += `<td class="text-center border border-dark table-${element.check}">${element.letter}</td>`;
+      print += `<td class="text-center border border-dark table-${element.check}" style="width:16.67%">${element.letter}</td>`;
     });
     print += '</tr></table>';
     return print;
