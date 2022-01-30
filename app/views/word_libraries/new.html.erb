@@ -1,0 +1,9 @@
+<h1>New word library</h1>
+<%= turbo_frame_tag 'new_word', target: "_top" do %>
+  <%= render "form", word_library: @word_library %>
+<% end %>
+<br>
+
+<div>
+  <%= link_to "Back to word libraries", word_libraries_path %>
+</div>

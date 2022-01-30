@@ -1,0 +1,13 @@
+<% if @response %>
+    <table class="table">
+        <tr>
+        <% @response.each do |r| %>
+            <td class="<% if r[:check] == -1 %>table-danger<% elsif r[:check] == 0 %>table-warning<% else %>table-success<% end %>">
+                <%= r[:letter] %>
+            </td>
+        <% end %>
+        </tr>
+    </table>
+<% else %>
+    <p><%= @attempt %> is not a word</p>
+<% end %>

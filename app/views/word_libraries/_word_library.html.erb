@@ -1,0 +1,7 @@
+<div id="<%= dom_id word_library %>">
+    <%= turbo_frame_tag "edit_word" do %>
+        <h3><%= Date.ordinal(Date.today.year, word_library.id).strftime("%A, %B %d, %Y") %></h3>
+        <%= word_library.word %>
+        <%= link_to "Edit", edit_word_library_path(word_library) %> 
+    <% end %>
+</div>

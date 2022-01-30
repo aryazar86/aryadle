@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @word_library %>
+
+<div>
+  <%= link_to "Edit this word library", edit_word_library_path(@word_library) %> |
+  <%= link_to "Back to word libraries", word_libraries_path %>
+
+  <%= button_to "Destroy this word library", @word_library, method: :delete %>
+</div>

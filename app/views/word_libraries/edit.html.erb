@@ -1,0 +1,10 @@
+<h1>Editing word library</h1>
+<%= turbo_frame_tag "edit_word" do %>
+  <%= render "form", word_library: @word_library %>
+<% end %>
+<br>
+
+<div>
+  <%= link_to "Show this word library", @word_library %> |
+  <%= link_to "Back to word libraries", word_libraries_path %>
+</div>

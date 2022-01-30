@@ -1,0 +1,25 @@
+<style>
+.loading .game-board { display: none }
+.loading .loading-screen {display: block}
+.ready .loading-screen { display: none }
+.complete .guess-form { display: none };
+.table td {width: 16.67%%}
+</style>
+<div class="container  mt-3 loading" data-controller="games keyboard cookie" data-games-loading-class="loading" data-games-ready-class="ready" data-games-complete-class="complete" data-action="games:guessMade->keyboard#updateKeyboard games:guessMade->cookie#updateCookies keyboard:keyStruck->games#appendLetter keyboard:enterStruck->games#guess keyboard:deleteStruck->games#removeLetter cookie:getExistingGame->games#useExistingGame cookie:getExistingGame->keyboard#updateKeyboard" >
+    <div class="game-board">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-auto guess-form">
+                <%= text_field_tag(:attempt, '', maxlength: 6, disabled: true, class: 'form-control form-control-lg', 'data-games-target' => "attempt" ) %>
+            </div>
+            <div class="col-auto">
+                <h2 class="text-center mb-0"><span data-games-target="attemptsLeft"></span> guesses left</h2>
+            </div>
+        </div>
+        <div class="text-center mb-3"><span class="d-none" data-games-target="error">This is not a word</span></div>
+        <div class="table-responsive" data-games-target="guesses"></div>
+        <div class="text-center" data-keyboard-target="keyboard"></div>
+    </div>
+    <div class="loading-screen">
+        LOADING!
+    </div>
+</div>

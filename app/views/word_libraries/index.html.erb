@@ -1,0 +1,8 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Word libraries</h1>
+<p><%= button_to "Create new word library", create_random_list_path, {method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" }} %></p>
+
+<div id="word_libraries">
+  <%= render partial: "word_libraries/word_library", collection: @word_libraries %>
+</div>
