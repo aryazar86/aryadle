@@ -1,5 +1,10 @@
 class AddLetterCountToWordLibraries < ActiveRecord::Migration[7.0]
   def change
-    add_column :word_libraries, :word_count, :text
+    create_table :word_libraries do |t|
+      t.string "word"
+      t.text "word_count"
+      
+      t.timestamps
+    end
   end
 end
