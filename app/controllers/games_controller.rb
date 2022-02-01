@@ -17,6 +17,7 @@ class GamesController < ApplicationController
     private
     
     def set_todays_word
-      @current_word = WordLibrary.find(Date.today.yday())
+        @current_word = WordLibrary.find(282)
+    #   @current_word = WordLibrary.find(Date.today.yday())
     end
 end

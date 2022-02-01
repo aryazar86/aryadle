@@ -2,7 +2,10 @@
 .loading .game-board { display: none }
 .loading .loading-screen {display: block}
 .ready .loading-screen { display: none }
-.complete .guess-form { display: none };
+.complete .guess-form { display: none }
+.keyboard span { cursor: pointer }
+.keyboard span:hover { filter: brightness(85%); }
+
 </style>
 <div class="container  mt-3 loading" data-controller="games keyboard cookie" data-games-loading-class="loading" data-games-ready-class="ready" data-games-complete-class="complete" data-action="games:guessMade->keyboard#updateKeyboard games:guessMade->cookie#updateCookies keyboard:keyStruck->games#appendLetter keyboard:enterStruck->games#guess keyboard:deleteStruck->games#removeLetter cookie:getExistingGame->games#useExistingGame cookie:getExistingGame->keyboard#updateKeyboard" >
     <div class="game-board">
@@ -16,7 +19,7 @@
         </div>
         <div class="text-center mb-3"><span class="d-none" data-games-target="error">This is not a word</span></div>
         <div class="table-responsive" data-games-target="guesses"></div>
-        <div class="text-center" data-keyboard-target="keyboard"></div>
+        <div class="text-center keyboard" data-keyboard-target="keyboard"></div>
     </div>
     <div class="loading-screen">
         LOADING!

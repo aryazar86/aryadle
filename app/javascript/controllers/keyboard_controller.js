@@ -87,9 +87,17 @@ export default class extends Controller {
 
   qwertyCheck(piece) {
     this.qwerty.forEach((row) =>
-      row.forEach((key) =>
-        key.letter == piece.letter ? (key.status = piece.check) : null
-      )
+      row.forEach((key) => {
+        if (
+          key.letter == piece.letter &&
+          (key.status != 'success' ||
+            (key.status == 'warning' && piece.check == 'danger'))
+        ) {
+          key.status = piece.check;
+        } else {
+          null;
+        }
+      })
     );
   }
 

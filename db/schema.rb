@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_22_184820) do
+ActiveRecord::Schema.define(version: 2022_02_01_223545) do
 
   create_table "word_libraries", force: :cascade do |t|
     t.string "word"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "word_count"
   end
 
 end
