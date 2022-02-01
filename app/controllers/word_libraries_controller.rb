@@ -1,4 +1,6 @@
 class WordLibrariesController < ApplicationController
+  http_basic_authenticate_with name: ENV["user"], password: ENV["pass"]
+
   before_action :set_word_library, only: %i[ show edit update destroy ]
 
   # GET /word_libraries or /word_libraries.json

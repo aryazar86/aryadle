@@ -4,6 +4,11 @@
             <div class="card-body">
                 <h5 class="card-title"><%= Date.ordinal(Date.today.year, word_library.id).strftime("%A, %B %d, %Y") %></h5>
                 <p class="card-text"><%= word_library.word %></p>
+                <ul class="card-text">
+                    <% word_library.word_count.each do |letter, count| %>
+                        <li><%= letter %>: <%= count %></li>
+                    <% end %>
+                </ul>
                 <%= link_to "Edit", edit_word_library_path(word_library), class: "card-link" %>
             </div>
         </div>
