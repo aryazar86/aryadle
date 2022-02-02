@@ -102,15 +102,17 @@ export default class extends Controller {
   }
 
   updateKeyboard({ detail: { guess: guess } }) {
-    guess.forEach((piece) => {
-      if (piece.guess) {
-        piece.guess.forEach((secondaryPiece) =>
-          this.qwertyCheck(secondaryPiece)
-        );
-      } else {
-        this.qwertyCheck(piece);
-      }
-    });
+    if (guess) {
+      guess.forEach((piece) => {
+        if (piece.guess) {
+          piece.guess.forEach((secondaryPiece) =>
+            this.qwertyCheck(secondaryPiece)
+          );
+        } else {
+          this.qwertyCheck(piece);
+        }
+      });
+    }
 
     this.drawKeyboard();
   }
