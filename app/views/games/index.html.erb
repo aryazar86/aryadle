@@ -11,14 +11,22 @@
     <div class="game-board">
         <div class="row justify-content-center align-items-center">
             <div class="col-auto guess-form">
-                <%= text_field_tag(:attempt, '', maxlength: 6, disabled: true, class: 'form-control form-control-lg', 'data-games-target' => "attempt" ) %>
+                <%= text_field_tag(:attempt, '', maxlength: 6, disabled: true, class: 'form-control form-control-lg text-center', 'data-games-target' => "attempt" ) %>
             </div>
             <div class="col-auto">
                 <h2 class="text-center mb-0"><span data-games-target="attemptsLeft"></span> guesses left</h2>
             </div>
         </div>
-        <div class="text-center mb-3"><span class="d-none" data-games-target="error">This is not a word</span></div>
-        <div class="table-responsive" data-games-target="guesses"></div>
+        <div class="row mt-3">
+            <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 text-center">
+                <span class="d-none alert alert-danger mb-0" role="alert" data-games-target="error">Sorry, this is not a real 6-letter word.</span>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 text-center">
+                <div class="table-responsive" data-games-target="guesses"></div>
+            </div>
+        </div>
         <div class="text-center keyboard" data-keyboard-target="keyboard"></div>
     </div>
     <div class="loading-screen">
