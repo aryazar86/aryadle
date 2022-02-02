@@ -43,7 +43,11 @@ export default class extends Controller {
   }
 
   guess() {
-    fetch(`/guess?attempt=${this.attemptTarget.value}`)
+    fetch(
+      `/guess?attempt=${this.attemptTarget.value}&timezone=${encodeURIComponent(
+        Intl.DateTimeFormat().resolvedOptions().timeZone
+      )}`
+    )
       .then((response) => {
         return response.json();
       })

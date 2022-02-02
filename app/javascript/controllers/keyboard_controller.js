@@ -52,18 +52,18 @@ export default class extends Controller {
       if (index == this.qwerty.length - 1) {
         printedKeyboard += `<span
             data-action="click->keyboard#enterClicked"
-            class="d-inline-block p-3 mx-1 bg-light bg-opacity-50"
+            class="d-inline-block p-2 p-md-3 mx-1 bg-light bg-opacity-50"
           >
             Enter
           </span>`;
       }
       row.forEach((key) => {
-        printedKeyboard += `<span data-action="click->keyboard#keyClicked" data-keyboard-letter-param="${key.letter}" class="d-inline-block p-3 mx-1 bg-${key.status} bg-opacity-50">${key.letter}</span>`;
+        printedKeyboard += `<span data-action="click->keyboard#keyClicked" data-keyboard-letter-param="${key.letter}" class="d-inline-block p-2 p-md-3 mx-1 bg-${key.status} bg-opacity-50">${key.letter}</span>`;
       });
       if (index == this.qwerty.length - 1) {
         printedKeyboard += `<span
             data-action="click->keyboard#deleteClicked"
-            class="d-inline-block p-3 mx-1 bg-light bg-opacity-50"
+            class="d-inline-block p-2 p-md-3 mx-1 bg-light bg-opacity-50"
           >
             Backspace
           </span>`;

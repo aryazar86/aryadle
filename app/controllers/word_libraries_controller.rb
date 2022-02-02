@@ -5,7 +5,7 @@ class WordLibrariesController < ApplicationController
 
   # GET /word_libraries or /word_libraries.json
   def index
-    @word_libraries = WordLibrary.all
+    @word_libraries = WordLibrary.all.order("id ASC")
   end
 
   # GET /word_libraries/1/edit

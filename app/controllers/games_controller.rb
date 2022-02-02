@@ -17,6 +17,14 @@ class GamesController < ApplicationController
     private
     
     def set_todays_word
-      @current_word = WordLibrary.find(Date.today.yday())
+        @timezone = params[:timezone]
+        
+        if @timezone
+            today = Time.now.in_time_zone(@timezone).to_date.yday()
+        else
+            today = Date.today.yday()
+        end
+
+        @current_word = WordLibrary.find(today)
     end
 end
