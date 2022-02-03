@@ -1,10 +1,17 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-  static targets = ['attempt', 'guesses', 'attemptsLeft', 'error'];
+  static targets = [
+    'attempt',
+    'guesses',
+    'attemptsLeft',
+    'error',
+    'actualWord',
+  ];
   static classes = ['loading', 'ready', 'complete'];
 
   initialize() {
+    this.isDone = false;
     this.attemptsLeft = 6;
   }
 
@@ -16,12 +23,18 @@ export default class extends Controller {
     this.attemptsLeftTarget.innerHTML = this.attemptsLeft;
   }
 
-  correctGuess(response, isDone) {
+  correctGuess(response, isDone, actualWord) {
     this.guessesTarget.innerHTML += this.printGuess(response);
     this.attemptsLeft -= 1;
     this.updateAttemptsLeft();
+    this.isDone = isDone;
     if (isDone || this.attemptsLeft == 0) {
       this.element.classList.add(this.completeClass);
+    }
+    if (!isDone && this.attemptsLeft == 0 && actualWord) {
+      this.actualWordTarget.innerHTML = actualWord;
+      this.actualWordTarget.classList.add('d-block');
+      this.actualWordTarget.classList.remove('d-none');
     }
     this.errorTarget.classList.remove('d-block');
     this.errorTarget.classList.add('d-none');
@@ -43,27 +56,31 @@ export default class extends Controller {
   }
 
   guess() {
-    fetch(
-      `/guess?attempt=${this.attemptTarget.value}&timezone=${encodeURIComponent(
-        Intl.DateTimeFormat().resolvedOptions().timeZone
-      )}`
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then(({ response, is_done }) => {
-        if (response) {
-          this.correctGuess(response, is_done);
-          this.dispatch('guessMade', {
-            detail: {
-              guess: response,
-              is_done: is_done,
-            },
-          });
-        } else {
-          this.incorrectGuess();
-        }
-      });
+    if (this.attemptsLeft > 0 && !this.isDone) {
+      fetch(
+        `/guess?attempt=${
+          this.attemptTarget.value
+        }&timezone=${encodeURIComponent(
+          Intl.DateTimeFormat().resolvedOptions().timeZone
+        )}&attemptsLeft=${this.attemptsLeft}`
+      )
+        .then((response) => {
+          return response.json();
+        })
+        .then(({ response, is_done, actual_word }) => {
+          if (response) {
+            this.correctGuess(response, is_done, actual_word);
+            this.dispatch('guessMade', {
+              detail: {
+                guess: response,
+                is_done: is_done,
+              },
+            });
+          } else {
+            this.incorrectGuess();
+          }
+        });
+    }
   }
 
   useExistingGame({ detail: { guess: currentGame } }) {

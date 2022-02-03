@@ -6,6 +6,7 @@ class GamesController < ApplicationController
 
     def guess
         @attempt = params[:attempt]
+        @actual_word = params[:attemptsLeft].to_i == 1 ? @current_word.word : nil
         @isDone = @attempt.eql?(@current_word.word)
         @response = @current_word.check( @attempt )
         respond_to do |format|
